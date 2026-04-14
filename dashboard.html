@@ -144,7 +144,7 @@
       </div>
 
 
-      <div class="card">
+      <div class="card" onclick="goToSection('documents')">
         <div class="card-title">Recent Document Requests</div>
         <div class="record-item">
           <div>
@@ -166,7 +166,7 @@
         </div>
       </div>
       <br>
-      <div class="card">
+      <div class="card" onclick="goToSection('blotter')">
         <div class="card-title">Recent Blotter Records</div>
         <div class="record-item">
           <div>
@@ -187,26 +187,22 @@
 
       <div class="analytics-grid">
 
-        <!-- 📈 LINE CHART -->
-        <div class="card">
+        <div class="card" onclick="goToSection('dashboard')">
           <div class="card-title">Weekly Activity</div>
           <canvas id="lineChart"></canvas>
         </div>
-
-        <!-- 📊 BAR CHART (already yours) -->
-        <div class="card">
+        
+        <div class="card" onclick="goToSection('documents')">
           <div class="card-title">Document Types</div>
           <canvas id="docBarChart"></canvas>
         </div>
-
-        <!-- 🥧 PIE CHART -->
-        <div class="card">
+        
+        <div class="card" onclick="goToSection('documents')">
           <div class="card-title">Document Status</div>
           <canvas id="statusPieChart"></canvas>
         </div>
-
-        <!-- 🚨 BLOTTER CHART -->
-        <div class="card">
+        
+        <div class="card" onclick="goToSection('blotter')">
           <div class="card-title">Blotter Cases</div>
           <div id="blotterList"></div>
         </div>
