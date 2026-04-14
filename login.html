@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo_smooth.png">
+<title>Brgy. Pulanglupa Dos</title>
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <!-- ═══ LOGIN ═══ -->
+<div id="login-page">
+  <div class="login-card">
+    <div class="login-logo-wrap">
+
+  <div class="logo-circle">
+  <img src="logo_smooth.png" alt="Barangay Logo">
+</div>
+
+  <!-- Circle border -->
+ 
+
+  <!-- Clip path for circle -->
+  
+
+  <!-- Image inside circle -->
+  
+         
+  </svg>
+    </div>
+    <div class="login-title">Brgy. Pulanglupa Dos</div>
+    <div class="login-sub">Barangay Records Management System</div>
+    <div class="login-field">
+      <label>Username</label>
+      <div class="login-input-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        <input id="login-user" type="text" placeholder="Enter username" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+    </div>
+    <div class="login-field">
+      <label>Password</label>
+      <div class="login-input-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        <input id="login-pass" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+    </div>
+    <div id="login-error" class="login-error">Incorrect username or password.</div>
+    
+    <div class="forgot-wrap">
+    <a href="#" onclick="openForgot(); return false;">Forgot Password?</a>
+</div>
+
+
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    </div>
+</div>
+<div id="forgot-modal" class="modal-overlay">
+  <div class="forgot-modal">
+    
+    <div class="forgot-header">
+      <h2>Forgot Password</h2>
+      <span class="close-btn" onclick="closeForgot()">×</span>
+    </div>
+
+    <p class="forgot-desc">
+      Enter your Email Address and we'll send you instructions to reset your password.
+    </p>
+
+    <div class="forgot-field">
+      <label>Email Address</label>
+      <input type="email" id="forgot-email" placeholder="Enter your email">
+    </div>
+
+    <div class="forgot-actions">
+      <button class="btn-cancel" onclick="closeForgot()">Cancel</button>
+      <button class="btn-reset" onclick="submitForgot()">Send Reset Link</button>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+const users = [
+  {username: "admin", password: "admin", name: "Carlos Mendoza"},
+  {username: "staff1", password: "1234", name: "Angela Reyes"},
+  {username: "staff2", password: "1234", name: "Mark Villanueva"}
+];
+
+/* ── LOGIN ── */
+function doLogin(){
+  const u = document.getElementById('login-user').value.trim();
+  const p = document.getElementById('login-pass').value;
+  const err = document.getElementById('login-error');
+
+  const user = users.find(x => x.username === u && x.password === p);
+
+  if(user){
+    err.style.display = 'none';
+sessionStorage.setItem("loggedInUser", user.name);
+window.location.replace('dashboard.html');
+  } else {
+    err.style.display = 'block';
+    document.getElementById('login-pass').value='';
+  }
+}
+
+function openForgot(){
+  document.getElementById('forgot-modal').classList.add('open');
+}
+
+function closeForgot(){
+  document.getElementById('forgot-modal').classList.remove('open');
+}
+
+function submitForgot(){
+  const email = document.getElementById('forgot-email').value;
+
+  if(email === ''){
+    alert('Please enter your email');
+  } else {
+    alert('Password reset link sent to ' + email);
+    closeForgot();
+  }
+}
+</script>
