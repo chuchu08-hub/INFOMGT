@@ -214,156 +214,88 @@
     </section>
 
 
-    <!-- ═══ RESIDENTS ═══ -->
-    <section id="residents" class="section">
-      <div class="page-header">
-        <h2>Residents</h2>
-        <p>Manage barangay residents information</p>
+  <section id="residents" class="section">
+  <div class="page-header">
+    <h2>Residents</h2>
+    <p>Manage barangay residents information</p>
+  </div>
+
+  <div class="blotter-tabs" style="margin-bottom:16px;">
+    <button class="blotter-tab active" onclick="showTab('residents','resident-list-tab',this)">Resident List</button>
+    <button class="blotter-tab" onclick="showTab('residents','archived-residents-tab',this)">Archived Residents</button>
+  </div>
+
+  <div id="resident-list-tab" class="blotter-tab-panel active">
+    <div class="topbar">
+      <div class="search-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" placeholder="Search residents..." oninput="filterResidents(this.value)">
       </div>
+      <button class="btn-red" onclick="openModal('add-resident-modal')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Resident
+      </button>
+    </div>
 
-      <div class="topbar">
-        <div class="search-wrap">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input type="text" placeholder="Search residents..." oninput="filterResidents(this.value)">
-        </div>
-        <button class="btn-red" onclick="openModal('add-resident-modal')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
-          </svg>
-          Add Resident
-        </button>
-      </div>
+    <div class="table-card">
+      <div class="table-header-row"><span>Resident List (3)</span></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact Number</th>
+            <th>Place of Birth</th>
+            <th>Date of Birth</th>
+            <th>Sex</th>
+            <th>Civil Status</th>
+            <th>Citizenship</th>
+            <th>Occupation</th>
+            <th>Relationship to Household Head</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="residents-tbody"></tbody>
+      </table>
+    </div>
+  </div>
 
-      <div class="table-card">
-        <div class="table-header-row"><span>Resident List (3)</span></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Contact Number</th>
-              <th>Place of Birth</th>
-              <th>Date of Birth</th>
-              <th>Sex</th>
-              <th>Civil Status</th>
-              <th>Citizenship</th>
-              <th>Occupation</th>
-              <th>Relationship to Household Head</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="residents-tbody">
-            <tr>
-              <td>Juan Dela Cruz</td>
-              <td>123 Main St, Purok 1</td>
-              <td>09123456789</td>
-              <td>Manila</td>
-              <td>1990-05-15</td>
-              <td>Male</td>
-              <td>Single</td>
-              <td>Filipino</td>
-              <td>Teacher</td>
-              <td>Household Head</td>
-              <td>
-                <button class="btn-view" onclick="openView(0)">View</button>
-                <button class="btn-edit" onclick="openEdit(0)">Edit</button>
-                <button class="btn-del" onclick="openDelete(0)">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    style="vertical-align:-2px;margin-right:4px;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-                  </svg>
-                  Archive
-                </button>
-              </td>
-            </tr>
+  <div id="archived-residents-tab" class="blotter-tab-panel">
+    <div class="table-card">
+      <div class="table-header-row"><span>Archived Residents</span></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact Number</th>
+            <th>Place of Birth</th>
+            <th>Date of Birth</th>
+            <th>Sex</th>
+            <th>Civil Status</th>
+            <th>Citizenship</th>
+            <th>Occupation</th>
+            <th>Relationship to Household Head</th>
+            <th>Archive Date</th>
+          </tr>
+        </thead>
+        <tbody id="archived-residents-tbody">
+          <tr>
+            <td colspan="11" style="text-align:center;color:var(--text3);padding:18px;">
+              No archived residents yet.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-            <tr>
-              <td>Maria Clara</td>
-              <td>456 Second Ave, Purok 2</td>
-              <td>09987654321</td>
-              <td>Quezon City</td>
-              <td>1995-08-22</td>
-              <td>Female</td>
-              <td>Married</td>
-              <td>Filipino</td>
-              <td>Nurse</td>
-              <td>Mother</td>
-              <td>
-                <button class="btn-view" onclick="openView(1)">View</button>
-                <button class="btn-edit" onclick="openEdit(1)">Edit</button>
-                <button class="btn-del" onclick="openDelete(1)">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    style="vertical-align:-2px;margin-right:4px;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-                  </svg>
-                  Archive
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>John Doe</td>
-              <td>789 Third Rd, Purok 3</td>
-              <td>09111222333</td>
-              <td>Cebu City</td>
-              <td>1988-03-10</td>
-              <td>Male</td>
-              <td>Single</td>
-              <td>Filipino</td>
-              <td>Driver</td>
-              <td>Tenant</td>
-              <td>
-                <button class="btn-view" onclick="openView(2)">View</button>
-                <button class="btn-edit" onclick="openEdit(2)">Edit</button>
-                <button class="btn-del" onclick="openDelete(2)">
-                  <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    style="vertical-align:-2px;margin-right:4px;">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" />
-                  </svg>
-                  Archive
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <br>
-
-      <div class="table-card">
-        <div class="table-header-row"><span>Archived Residents</span></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Contact Number</th>
-              <th>Place of Birth</th>
-              <th>Date of Birth</th>
-              <th>Sex</th>
-              <th>Civil Status</th>
-              <th>Citizenship</th>
-              <th>Occupation</th>
-              <th>Relationship to Household Head</th>
-              <th>Archive Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="11" style="text-align:center;color:var(--text3);padding:18px;">
-                No archived residents yet.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
 
     <!-- ═══ DOCUMENTS ═══ -->
     <section id="documents" class="section">
@@ -465,76 +397,80 @@
 </section>
 
 
-    <!-- ═══ OFFICIALS ═══ -->
-    <section id="officials" class="section">
-      <div class="page-header">
-        <h2>Barangay Officials</h2>
-        <p>Current barangay officials directory</p>
+  <section id="officials" class="section">
+  <div class="page-header">
+    <h2>Barangay Officials</h2>
+    <p>Current barangay officials directory</p>
+  </div>
+
+  <div class="blotter-tabs" style="margin-bottom:16px;">
+    <button class="blotter-tab active" onclick="showTab('officials','current-officials-tab',this)">Current Officials</button>
+    <button class="blotter-tab" onclick="showTab('officials','archived-officials-tab',this)">Archived Officials</button>
+  </div>
+
+  <div id="current-officials-tab" class="blotter-tab-panel active">
+    <div class="topbar">
+      <div class="search-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input type="text" placeholder="Search officials by name or position...">
       </div>
+      <button class="btn-red" onclick="openModal('add-official-modal')">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+        </svg>
+        Add Official
+      </button>
+    </div>
 
-      <div class="topbar">
-        <div class="search-wrap">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input type="text" placeholder="Search officials by name or position...">
-        </div>
-        <button class="btn-red" onclick="openModal('add-official-modal')">
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
-          </svg>
-          Add Official
-        </button>
-      </div>
+    <div class="officials-grid" id="officials-grid"></div>
+  </div>
 
-      <div class="officials-grid" id="officials-grid"></div>
+  <div id="archived-officials-tab" class="blotter-tab-panel">
+    <div class="table-card">
+      <div class="table-header-row"><span>Archived Officials</span></div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Contact</th>
+            <th>Term Start</th>
+            <th>Term End</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="archived-officials-tbody">
+          <tr>
+            <td colspan="6" style="text-align:center;color:var(--text3);padding:18px;">
+              Officials whose term has ended will appear here.
+            </td>
+          </tr>
 
+          <tr>
+            <td>Hon. Roberto M. Santos</td>
+            <td>Barangay Kagawad</td>
+            <td>09170001111</td>
+            <td>2019-01-01</td>
+            <td>2022-12-31</td>
+            <td><span class="badge badge-orange">Archived</span></td>
+          </tr>
 
-      <br>
-
-      <div class="table-card">
-
-        <div class="table-header-row"><span>Archived Officials</span></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Contact</th>
-              <th>Term Start</th>
-              <th>Term End</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="6" style="text-align:center;color:var(--text3);padding:18px;">
-                Officials whose term has ended will appear here.
-              </td>
-            </tr>
-
-            <tr>
-              <td>Hon. Roberto M. Santos</td>
-              <td>Barangay Kagawad</td>
-              <td>09170001111</td>
-              <td>2019-01-01</td>
-              <td>2022-12-31</td>
-              <td><span class="badge badge-orange">Archived</span></td>
-            </tr>
-
-            <tr>
-              <td>Ana P. Villareal</td>
-              <td>Barangay Secretary</td>
-              <td>09180002222</td>
-              <td>2019-01-01</td>
-              <td>2022-12-31</td>
-              <td><span class="badge badge-orange">Archived</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+          <tr>
+            <td>Ana P. Villareal</td>
+            <td>Barangay Secretary</td>
+            <td>09180002222</td>
+            <td>2019-01-01</td>
+            <td>2022-12-31</td>
+            <td><span class="badge badge-orange">Archived</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
 
 
@@ -1525,21 +1461,21 @@
         closeModal('delete-resident-modal');
       }
       function renderArchivedResidents() {
-        const archivedTable = document.querySelectorAll('#residents .table-card table tbody')[1];
-        if (!archivedTable) return;
+  const archivedTable = document.getElementById('archived-residents-tbody');
+  if (!archivedTable) return;
 
-        if (archivedResidents.length === 0) {
-          archivedTable.innerHTML = `
+  if (archivedResidents.length === 0) {
+    archivedTable.innerHTML = `
       <tr>
         <td colspan="11" style="text-align:center;color:var(--text3);padding:18px;">
           No archived residents yet.
         </td>
       </tr>
     `;
-          return;
-        }
+    return;
+  }
 
-        archivedTable.innerHTML = archivedResidents.map(r => `
+  archivedTable.innerHTML = archivedResidents.map(r => `
     <tr>
       <td>${r.fname} ${r.lname}</td>
       <td>${r.block} ${r.street}, ${r.zone}</td>
@@ -1554,7 +1490,8 @@
       <td>${r.archiveDate}</td>
     </tr>
   `).join('');
-      }
+}
+
 
       function filterResidents(q) {
         document.querySelectorAll('#residents-tbody tr').forEach(r => {
@@ -2449,6 +2386,13 @@ function printLuponSummons(id) {
 
   openLuponPrintWindow(html);
 }
+function showTab(sectionId, tabId, btn) {
+  document.querySelectorAll(`#${sectionId} .blotter-tab`).forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll(`#${sectionId} .blotter-tab-panel`).forEach(panel => panel.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+}
+
 
 function openLuponPrintWindow(html) {
   const w = window.open('', '_blank');
