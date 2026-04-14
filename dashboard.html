@@ -2462,15 +2462,15 @@ function formatLuponDate(dateString, timeString) {
         renderIDCards(residents.filter(r => [r.fname + ' ' + r.lname, r.address].some(v => v.toLowerCase().includes(q.toLowerCase()))));
       }
       function goToSection(sectionId) {
-        // hide all sections
-        document.querySelectorAll('.section').forEach(sec => {
-          sec.classList.remove('active');
-        });
+        const btn = document.querySelector(
+          `.nav-item[onclick*="${sectionId}"]`
+        );
 
-        // show selected section
-        document.getElementById(sectionId).classList.add('active');
+        if (btn) {
+          showSection(sectionId, btn);
+        }
       }
-      /* ── HELPERS ── */
+
       function showSection(id, btn) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
